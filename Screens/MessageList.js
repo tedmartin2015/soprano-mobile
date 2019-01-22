@@ -46,9 +46,9 @@ class MessageList extends Component {
         });
     }
 
-    handleHandle = (item) => {
-        console.log(`Row: ${item.subject}`);
-        this.props.navigation.navigate('details', {item});
+    handleItemClicked = (message) => {
+        console.log(`Row: ${message.subject}`);
+        this.props.navigation.navigate('details', {message});
     }
 
     async componentDidMount() {
@@ -73,21 +73,14 @@ class MessageList extends Component {
         });
     }
 
-    renderItem = ({item}) => {
-        <ListItem 
-            title={item.subject}
-            subTitle={item.sender}
-        />
-    }
-
     render() {
         return (
             [
                 <FlatList
                     key="flatlist" 
                     data={this.state.messages}
-                    keyExtractor={(item) => item.id} 
-                    renderItem={({item}) => <ListItem title={item.subject} onPress={() => this.handleHandle(item)} />}
+                    keyExtractor={(message) => message.id} 
+                    renderItem={({item}) => <ListItem title={item.subject} onPress={() => this.handleItemClicked(item)} />}
                 />,
                 <ActionButton
                     key="fab"
@@ -125,5 +118,8 @@ class MessageList extends Component {
     //     );
     // }
 }
+ 
+
+console.ignoredYellowBox = ['Setting a timer'];
 
 export default MessageList;

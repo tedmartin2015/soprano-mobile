@@ -7,7 +7,7 @@ const AppNavigator = createStackNavigator({
   messages: {
     screen: MessageList,
     navigationOptions: () => ({
-      title: 'Messages Sent'
+      title: 'Sent Messages'
     })
   },
   send: {

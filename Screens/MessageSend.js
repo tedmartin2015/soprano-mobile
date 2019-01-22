@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
 class MessageSend extends Component {
 
     constructor(props) {
-        super(props);
+        super(props); 
 
         this.state = {
             message: '',
