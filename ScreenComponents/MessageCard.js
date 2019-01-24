@@ -1,6 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { Text, StyleSheet, View, TouchableHighlight } from 'react-native';
 import PropTypes from 'prop-types';
 import { formatDate } from '../api';
 

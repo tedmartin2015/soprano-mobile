@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { FlatList, StyleSheet, TouchableHighlight } from 'react-native';
 import MessageCard from '../ScreenComponents/MessageCard';
 import ActionButton from 'react-native-action-button';
 import { getMessages } from '../api';
 import firebase from 'firebase';
-
 
 if (!firebase.apps.length) {
     firebase.initializeApp(config);
@@ -23,6 +21,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "column",
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: '300',
+    },
+    date: {
+        fontWeight: '200',
+        fontSize: 14,
+        color: '#bdbdbd',
+        textAlign: 'left',   
+        paddingRight: 5
     }
 });
 
@@ -39,19 +48,14 @@ class MessageList extends Component {
     onLoadMessages = async () => {
         this.setState({ isMounted: true });
 
-        await getMessages('admin').then((data) => { 
+        getMessages('admin').then((data) => { 
             this.setState({ messages: data });                                    
         }, (error) =>{
             console.log(`ERROR FOUND: ${error}`);
         });
     }
 
-    handleItemClicked = (message) => {
-        console.log(`Row: ${message.subject}`);
-        this.props.navigation.navigate('details', {message});
-    }
-
-    async componentDidMount() {
+    componentDidMount() {
         firebase.database().ref('sent-messages/').on('value', (snapshot) => {
             let messages = [];
             const rawMessages = snapshot.val();
@@ -73,14 +77,24 @@ class MessageList extends Component {
         });
     }
 
+    handleItemPressed = (item) => {
+        this.props.navigation.navigate('details', { message: item });
+    }
+
     render() {
         return (
             [
                 <FlatList
                     key="flatlist" 
                     data={this.state.messages}
-                    keyExtractor={(message) => message.id} 
-                    renderItem={({item}) => <ListItem title={item.subject} onPress={() => this.handleItemClicked(item)} />}
+                    style={styles.list}
+                    keyExtractor={(message) => message.id}    
+                    renderItem={
+                            ({item}) => 
+                            <TouchableHighlight onPress={() => this.handleItemPressed(item)}>
+                                <MessageCard message={item} />
+                            </TouchableHighlight>    
+                        }
                 />,
                 <ActionButton
                     key="fab"
@@ -90,36 +104,8 @@ class MessageList extends Component {
             ]
         );
     }
-
-    // render() {
-    //     return (
-    //         [
-    //             <FlatList
-    //                 key="flatlist"
-    //                 style={styles.list}
-    //                 data={this.state.messages}
-    //                 renderItem={
-    //                     ({item}) => (
-    //                             <TouchableWithoutFeedback
-    //                                 onPress={() => this.handleHandle(item)}
-    //                             >
-    //                                 <MessageCard onClick={this.handleHandle(item)} message={item} />
-    //                             </TouchableWithoutFeedback>               
-    //                         )}
-    //                 keyExtractor={(item) => item.id}                   
-    //             >
-    //             </FlatList>,
-    //             <ActionButton
-    //                 key="fab"
-    //                 onPress={this.handleAddEvent}
-    //                 buttonColor="rgba(231, 76, 60, 1)">
-    //             </ActionButton>
-    //         ]
-    //     );
-    // }
 }
  
-
 console.ignoredYellowBox = ['Setting a timer'];
 
 export default MessageList;
