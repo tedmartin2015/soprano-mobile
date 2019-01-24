@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { formatDate } from '../api';
 const styles = StyleSheet.create({
     card: {
         backgroundColor: '#fff',
@@ -45,25 +46,22 @@ class MessageDetails extends Component {
     render() {
         const { message } = this.props.navigation.state.params;
         return (
-            
-            <View>
-                <Text>{message.subject}</Text>
+            <View style={styles.card}> 
+                <View style={styles.header}>
+                    <Text style={styles.title}>{message.subject}</Text>
+                </View>                              
+                <View style={styles.detailsContainer}>
+                    <View>
+                        <Text style={styles.date}>{formatDate(message.date)}</Text>
+                    </View>
+                    <View><Text style={{color: '#bdbdbd'}}>|</Text></View>
+                    <View>
+                        <Text style={styles.sender}>sent by: {message.sender}</Text>
+                    </View>                
+                </View>          
             </View>
         );
-        // <View style={styles.card}> 
-        //     <View style={styles.header}>
-        //         <Text style={styles.title}>{message.subject}</Text>
-        //     </View>                              
-        //     <View style={styles.detailsContainer}>
-        //         <View>
-        //             <Text style={styles.date}>{formatDate(message.date)}</Text>
-        //         </View>
-        //         <View><Text style={{color: '#bdbdbd'}}>|</Text></View>
-        //         <View>
-        //             <Text style={styles.sender}>sent by: {message.sender}</Text>
-        //         </View>                
-        //     </View>          
-        // </View>
+        
     }
 }
 
