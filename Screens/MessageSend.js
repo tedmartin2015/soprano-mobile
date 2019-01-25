@@ -2,24 +2,72 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableHighlight } from 'react-native';
 import { sendMessage } from '../api';
 
+// const styles = StyleSheet.create({
+//     mainContainer: {
+//         backgroundColor: '#f3f3f3',
+//         height: '100%'
+//     },
+//     fieldContainer: {
+//         marginTop: 20,
+//         marginBottom: 10,
+//         backgroundColor: '#fff',
+//     },
+//     text: {
+//         height: 150,
+//         margin: 0,
+//         marginRight: 7,
+//         paddingLeft: 10
+//     },
+//     subjectHeight: {
+//         height: 40
+//     },
+//     button: {
+//         height: 50,
+//         backgroundColor: '#48BBEC',
+//         borderColor: '#48BBEC',
+//         alignSelf: 'stretch',
+//         margin: 10,
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//         borderRadius: 5
+//     },
+//     buttonText: {
+//         color: '#fff',
+//         fontSize: 18
+//     },
+//     borderTop: {
+//         borderColor: '#f3f3f3',
+//         borderTopWidth: 1.5,
+//     }
+// }); 
+
 const styles = StyleSheet.create({
-    mainContainer: {
-        backgroundColor: '#f3f3f3',
-        height: '100%'
-    },
-    fieldContainer: {
-        marginTop: 20,
-        marginBottom: 10,
+    card: {
         backgroundColor: '#fff',
+        flexDirection: 'column',
+        padding: 10,
+        paddingBottom: 10,
+        margin: 10,
+        marginTop: 5,
+        marginBottom: 5,
     },
-    text: {
-        height: 150,
-        margin: 0,
-        marginRight: 7,
-        paddingLeft: 10
+    cardHeader: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
-    subjectHeight: {
-        height: 40
+    title: {
+        fontSize: 18,
+        fontWeight: '300',
+    },
+    detailsContainer: {
+        flex: 1,
+        flexDirection: 'row'
+    },
+    mainContainer: {
+        flex: 1,
+        paddingTop: 20,
+        backgroundColor: '#F3F3F3',
     },
     button: {
         height: 50,
@@ -31,15 +79,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 5
     },
-    buttonText: {
-        color: '#fff',
-        fontSize: 18
+    text: {
+        height: 150,
+        margin: 0,
+        marginRight: 7,
+        paddingLeft: 10
     },
-    borderTop: {
-        borderColor: '#f3f3f3',
-        borderTopWidth: 1.5,
+    subjectHeight: {
+        height: 20
     }
-}); 
+});
 
 class MessageSend extends Component {
 
@@ -83,8 +132,8 @@ class MessageSend extends Component {
 
     render() {
         return (
-            <View style={styles.mainContainer}>
-                <View style={styles.fieldContainer}> 
+            <View style={styles.mainContainer}>               
+                <View style={styles.card}>
                     <TextInput
                         autoFocus
                         spellCheck={false}
@@ -92,8 +141,9 @@ class MessageSend extends Component {
                         value={this.state.subject}
                         style={[styles.text, styles.subjectHeight]}
                         placeholder="Subject"
-                    >
-                    </TextInput>
+                    />
+                </View>
+                <View style={styles.card}>
                     <TextInput 
                         style={styles.text}
                         spellCheck={false}
@@ -101,9 +151,8 @@ class MessageSend extends Component {
                         onChangeText={this.handleChangeMessage}
                         value={this.state.message}
                         placeholder="Message"
-                    >
-                    </TextInput>
-                </View>
+                    />
+                </View>                                  
                 <TouchableHighlight 
                     style={styles.button} 
                     onPress={this.handleSendMessage}

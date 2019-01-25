@@ -12,11 +12,6 @@ const styles = StyleSheet.create({
         marginTop: 5,
         marginBottom: 5,
     },
-    cardHeader: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
     sender: {
         fontWeight: '200',
         fontSize: 14,
@@ -28,10 +23,6 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 20,
         backgroundColor: '#F3F3F3',
-    },
-    footer: {
-        textAlign: 'right',
-        color: '#bdbdbd'
     },
     header: { 
         paddingBottom: 10
