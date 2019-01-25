@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 export default function SenderDetails({ message }) {
     return (
         <View>
-            <Text style={styles.footer}>sent by {message.sender} at {formatDate(message.date)}</Text>
+            <Text style={styles.footer}>sent by {message.sender.toLowerCase()} on {formatDate(message.date)}</Text>
         </View> 
     );
 }

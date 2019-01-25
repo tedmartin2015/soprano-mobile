@@ -2,45 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableHighlight } from 'react-native';
 import { sendMessage } from '../api';
 
-// const styles = StyleSheet.create({
-//     mainContainer: {
-//         backgroundColor: '#f3f3f3',
-//         height: '100%'
-//     },
-//     fieldContainer: {
-//         marginTop: 20,
-//         marginBottom: 10,
-//         backgroundColor: '#fff',
-//     },
-//     text: {
-//         height: 150,
-//         margin: 0,
-//         marginRight: 7,
-//         paddingLeft: 10
-//     },
-//     subjectHeight: {
-//         height: 40
-//     },
-//     button: {
-//         height: 50,
-//         backgroundColor: '#48BBEC',
-//         borderColor: '#48BBEC',
-//         alignSelf: 'stretch',
-//         margin: 10,
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         borderRadius: 5
-//     },
-//     buttonText: {
-//         color: '#fff',
-//         fontSize: 18
-//     },
-//     borderTop: {
-//         borderColor: '#f3f3f3',
-//         borderTopWidth: 1.5,
-//     }
-// }); 
-
 const styles = StyleSheet.create({
     card: {
         backgroundColor: '#fff',
@@ -68,6 +29,10 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 20,
         backgroundColor: '#F3F3F3',
+    },
+    buttonText: {
+        color: '#fff',
+        fontSize: 18
     },
     button: {
         height: 50,
