@@ -91,7 +91,7 @@ class MessageList extends Component {
                     keyExtractor={(message) => message.id}    
                     renderItem={
                             ({item}) => 
-                            <TouchableHighlight onPress={() => this.handleItemPressed(item)}>
+                            <TouchableHighlight underlayColor={'#48BBEC'} onPress={() => this.handleItemPressed(item)}>
                                 <MessageCard message={item} />
                             </TouchableHighlight>    
                         }
