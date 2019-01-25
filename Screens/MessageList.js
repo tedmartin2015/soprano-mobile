@@ -86,7 +86,7 @@ class MessageList extends Component {
             [
                 <FlatList
                     key="flatlist" 
-                    data={this.state.messages}
+                    data={this.state.messages.sort((a,b) => parseInt(b.date) - parseInt(a.date))}
                     style={styles.list}
                     keyExtractor={(message) => message.id}    
                     renderItem={

@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, StyleSheet, View, TouchableHighlight } from 'react-native';
 import PropTypes from 'prop-types';
 import { formatDate } from '../api';
+import SenderDetails from './SenderDetails';
 
 const styles = StyleSheet.create({
     card: {
@@ -19,21 +20,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
-    sender: {
-        fontWeight: '200',
-        fontSize: 14,
-        color: '#bdbdbd',
-        textAlign: 'right',
-        marginLeft: 5,
-        
-    },
-    date: {
-        fontWeight: '200',
-        fontSize: 14,
-        color: '#bdbdbd',
-        textAlign: 'left',   
-        paddingRight: 5
-    },
     title: {
         fontSize: 18,
         fontWeight: '300',
@@ -47,17 +33,11 @@ const styles = StyleSheet.create({
 export default function MessageCard({ message }) {
     return (    
         <View style={styles.card}> 
-            <View style={styles.header}>
+            <View style={styles.cardHeader}>
                 <Text style={styles.title}>{message.subject}</Text>
             </View>                              
             <View style={styles.detailsContainer}>
-                <View>
-                    <Text style={styles.date}>{formatDate(message.date)}</Text>
-                </View>
-                <View><Text style={{color: '#bdbdbd'}}>|</Text></View>
-                <View>
-                    <Text style={styles.sender}>sent by: {message.sender}</Text>
-                </View>                
+                <SenderDetails message={message} />
             </View>          
         </View>
     );

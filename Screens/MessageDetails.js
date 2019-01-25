@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { formatDate } from '../api';
+import SenderDetails from '../ScreenComponents/SenderDetails';
+
 const styles = StyleSheet.create({
     card: {
         backgroundColor: '#fff',
-        flex: 1,
-        flexDirection: 'column',
         padding: 10,
         paddingBottom: 10,
         margin: 10,
@@ -23,22 +23,23 @@ const styles = StyleSheet.create({
         color: '#bdbdbd',
         textAlign: 'right',
         marginLeft: 5,
-        
     },
-    date: {
-        fontWeight: '200',
-        fontSize: 14,
-        color: '#bdbdbd',
-        textAlign: 'left',   
-        paddingRight: 5
-    },
-    title: {
-        fontSize: 18,
-        fontWeight: '300',
-    },
-    detailsContainer: {
+    mainContainer: {
         flex: 1,
-        flexDirection: 'row'
+        paddingTop: 20,
+        backgroundColor: '#F3F3F3',
+    },
+    footer: {
+        textAlign: 'right',
+        color: '#bdbdbd'
+    },
+    header: { 
+        paddingBottom: 10
+    },
+    subject: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+
     }
 });
 class MessageDetails extends Component {
@@ -46,20 +47,18 @@ class MessageDetails extends Component {
     render() {
         const { message } = this.props.navigation.state.params;
         return (
-            <View style={styles.card}> 
-                <View style={styles.header}>
-                    <Text style={styles.title}>{message.subject}</Text>
-                </View>                              
-                <View style={styles.detailsContainer}>
-                    <View>
-                        <Text style={styles.date}>{formatDate(message.date)}</Text>
-                    </View>
-                    <View><Text style={{color: '#bdbdbd'}}>|</Text></View>
-                    <View>
-                        <Text style={styles.sender}>sent by: {message.sender}</Text>
-                    </View>                
-                </View>          
+            <View style={styles.mainContainer}>
+                <View style={styles.card}>
+                    <Text style={styles.subject}>{message.subject}</Text>
+                </View>
+                <View style={styles.card}> 
+                    <View style={styles.header}>
+                        <Text style={styles.title}>{message.message}</Text>
+                    </View>    
+                    <SenderDetails message={message} />                                  
+                </View>
             </View>
+            
         );
         
     }
