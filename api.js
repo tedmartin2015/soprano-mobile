@@ -15,7 +15,7 @@ if (!firebase.apps.length) {
 }
 
 export function formatDate(date) {
-    return moment(date).format('l hh:mm a');
+    return moment(date).format('l h:mm a');
 }
 
 export function sendMessage(m) {
