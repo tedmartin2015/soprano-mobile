@@ -71,7 +71,7 @@ class MessageList extends Component {
                     }
                     messages.push(message);                                             
                 });
-                console.log(`This is an object: ${messages}`);
+                
                 this.setState({ messages });
             }
         });

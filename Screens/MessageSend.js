@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableHighlight, KeyboardAvoidingView } from 'react-native';
 import { sendMessage } from '../api';
 
 const styles = StyleSheet.create({
@@ -97,7 +97,7 @@ class MessageSend extends Component {
 
     render() {
         return (
-            <View style={styles.mainContainer}>               
+            <KeyboardAvoidingView resetScrollToCoords={{x: 0, y: 0}} scrollEnabled={false} style={styles.mainContainer}>               
                 <View style={styles.card}>
                     <TextInput
                         autoFocus
@@ -125,7 +125,7 @@ class MessageSend extends Component {
                 >
                     <Text style={styles.buttonText}>Send</Text>
                 </TouchableHighlight>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }

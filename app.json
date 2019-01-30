@@ -1,4 +1,6 @@
 {
+  "name": "soprano-mobile",
+  "displayName": "Soprano Mobile",
   "expo": {
     "name": "soprano-mobile",
     "slug": "soprano-mobile",
