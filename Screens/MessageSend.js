@@ -50,6 +50,9 @@ const styles = StyleSheet.create({
         marginRight: 7,
         paddingLeft: 10
     },
+    androidMultiLineTextStyle: {
+        textAlignVertical: "top"
+    },
     subjectHeight: {
         height: 20
     }
@@ -87,9 +90,12 @@ class MessageSend extends Component {
                 sender: 'admin',
                 subject: this.state.subject
             }).then(() => {
+                // call SOPRANO apis here ...
                 console.log('Sending successful!');
                 this.setState({ message: '', subject: '' });
-            });  
+            }).catch((error) => {
+                console.log(`ERROR DETAILS: ${error}`);
+            });
 
             this.props.navigation.navigate('messages');
         }            
@@ -110,7 +116,7 @@ class MessageSend extends Component {
                 </View>
                 <View style={styles.card}>
                     <TextInput 
-                        style={styles.text}
+                        style={[styles.text, styles.androidMultiLineTextStyle]}
                         spellCheck={false}
                         multiline={true}
                         onChangeText={this.handleChangeMessage}
